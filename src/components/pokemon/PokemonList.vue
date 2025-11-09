@@ -25,7 +25,11 @@ const { pokemons, isLoading, error } = usePokemonList();
         :key="pokemon.id"
         class="list-none"
       >
+      <router-link
+          :to="{ name: 'PokemonDetails', params: { pokemonName: pokemon.name } }"
+        >
         <PokemonCard :pokemon="pokemon" />
+      </router-link>
       </li>
     </ul>
   </div>

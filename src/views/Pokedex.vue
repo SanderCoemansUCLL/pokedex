@@ -3,5 +3,7 @@ import PokemonList from '../components/pokemon/PokemonList.vue';
 </script>
 
 <template>
-  <PokemonList />
+  <div class="min-h-screen min-w-screen bg-[#f5f5f5]">
+    <PokemonList />
+  </div>
 </template>
