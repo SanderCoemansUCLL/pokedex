@@ -34,7 +34,7 @@ const statColorClass = (value: number) => {
           <div class="flex-1">
             <div class="bg-gray-200 h-3 rounded-full overflow-hidden">
               <div
-                :style="{ width: stat.base_stat }"
+                :style="{ width: stat.base_stat + '%' }"
                 :class="['h-3 rounded-full transition-all', statColorClass(stat.base_stat)]"
                 role="progressbar"
                 :aria-valuenow="stat.base_stat"
