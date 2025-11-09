@@ -5,6 +5,7 @@ import { usePokemonDetails } from '../composables/usePokemonDetails'
 import PokemonLightBox from '../components/pokemon/PokemonLightBox.vue'
 import colours from '../utils/pokemonTypeColors'
 import PokemonAbout from '../components/pokemon/PokemonAbout.vue'
+import PokemonStats from '../components/pokemon/PokemonStats.vue'
 
 const route = useRoute()
 
@@ -49,6 +50,7 @@ const capitalizedName = computed(() => {
 
     <div class="pl-8 pr-8">
       <h2 class="text-left">Stats</h2>
+      <PokemonStats :stats="pokemon!.stats" />
     </div>
 
     <div class="pl-8 pr-8">
