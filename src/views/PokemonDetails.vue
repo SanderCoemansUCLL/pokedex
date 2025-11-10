@@ -9,8 +9,17 @@ import PokemonStats from '../components/pokemon/PokemonStats.vue'
 import PokemonMoves from '../components/pokemon/PokemonMoves.vue'
 import { Heart } from 'lucide-vue-next';
 import { useFavouritesStore } from '../stores/favourites';
+import BackButton from '../components/ui/BackButton.vue'
+import { useTeamStore } from '../stores/team'
 
-const route = useRoute()
+const route = useRoute();
+
+const teamStore = useTeamStore();
+
+const inTeam = computed(() => {
+  const pokemonId = pokemon.value?.id ?? 0;
+  return teamStore.isMember(pokemonId);
+});
 
 const nameRef = toRef(route.params, 'pokemonName') as Ref<string>
 
@@ -42,7 +51,8 @@ const isFavourite = computed(() => {
 </script>
 
 <template>
-  <div class="min-h-screen min-w-screen" :style="bgStyle">
+  <div class="min-h-screen min-w-screen p-4 pb-20" :style="bgStyle">
+    <BackButton />
     <div v-if="error">
       <p class="text-red-500">Error: {{ error }}</p>
     </div>
@@ -55,26 +65,38 @@ const isFavourite = computed(() => {
       <p class="text-red-500">Pokemon not found.</p>
     </div>
 
-    <div v-else class="pt-8 pl-8 pr-8 flex justify-between items-baseline">
+    <div v-else class="pt-8 flex justify-between items-baseline">
       <h1 class="text-left font-bold">{{ capitalizedName }}</h1>
       <Heart v-if="isFavourite" :size="Number(32)" @click="toggleFavourite" fill="white"/>
       <Heart v-else :size="Number(32)" @click="toggleFavourite" />
     </div>
     <PokemonLightBox :sprites="pokemon!.sprites" />
 
-    <div class="pl-8 pr-8 pb-6">
+    <div class="pb-6">
       <h2 class="text-left font-bold text-lg">About</h2>
       <PokemonAbout :pokemon="pokemon!" />
     </div>
 
-    <div class="pl-8 pr-8 pb-6">
+    <div class="pb-6">
       <h2 class="text-left font-bold text-lg">Stats</h2>
       <PokemonStats :stats="pokemon!.stats" />
     </div>
 
-    <div class="pl-8 pr-8 pb-6">
+    <div class="pb-6">
       <h2 class="text-left font-bold text-lg">Moveset</h2>
       <PokemonMoves :moves="pokemon!.moves" />
+    </div>
+
+    <div class="fixed left-1/2 transform -translate-x-1/2 bottom-6 z-50">
+      <button
+        type="button"
+        @click="teamStore.toggleMember(pokemon!.id)"
+        class="min-w-[260px] max-w-lg w-[min(92vw,520px)] px-6 py-3 rounded-full shadow-lg text-sm font-semibold flex items-center justify-center gap-3
+               bg-gray-900 text-white hover:bg-gray-800 active:scale-95 focus:outline-none focus:ring-2 focus:ring-gray-700"
+      >
+        <span v-if="!inTeam">Add to team</span>
+        <span v-else>Remove from team</span>
+      </button>
     </div>
 
   </div>
