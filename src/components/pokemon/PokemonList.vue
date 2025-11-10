@@ -5,14 +5,30 @@ import PokemonCard from './PokemonCard.vue';
 
 const { pokemons, isLoading, error } = usePokemonList();
 
-const props = defineProps<{ search?: string, onlyIds?: number[] }>();
+const props = defineProps<{ search?: string, onlyIds?: number[], sort?: 'name-asc' | 'name-desc' | 'id-asc' | 'id-desc' }>();
 
 const formattedId = (id: number) => {
   return `${String(id).padStart(3, "0")}`;
 };
 
-const filteredPokemons = computed(() => {
+const sortedPokemons = computed(() => {
   let list = pokemons.value ?? [];
+
+  if (props.sort === 'name-asc') {
+    list = list.slice().sort((a, b) => (a.name ?? '').localeCompare(b.name ?? ''));
+  } else if (props.sort === 'name-desc') {
+    list = list.slice().sort((a, b) => (b.name ?? '').localeCompare(a.name ?? ''));
+  } else if (props.sort === 'id-asc') {
+    list = list.slice().sort((a, b) => (a.id ?? 0) - (b.id ?? 0));
+  } else if (props.sort === 'id-desc') {
+    list = list.slice().sort((a, b) => (b.id ?? 0) - (a.id ?? 0));
+  }
+
+  return list;
+});
+
+const filteredPokemons = computed(() => {
+  let list = sortedPokemons.value ?? [];
 
   if (props.onlyIds) {
     if (props.onlyIds.length === 0) return []
@@ -42,7 +58,7 @@ const filteredPokemons = computed(() => {
       {{ error }}
     </div>
 
-    <div v-else-if="isLoading" class="flex justify-center items-center py-12">
+    <div v-else-if="isLoading && !(props.onlyIds?.length === 0)" class="flex justify-center items-center py-12">
       <span class="text-gray-500">Loading…</span>
     </div>
 
