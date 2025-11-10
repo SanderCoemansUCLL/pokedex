@@ -87,15 +87,15 @@ const isFavourite = computed(() => {
       <PokemonMoves :moves="pokemon!.moves" />
     </div>
 
-    <div class="fixed left-1/2 transform -translate-x-1/2 bottom-6 z-50">
+    <div class="fixed left-1/2 transform -translate-x-1/2 bottom-6 z-50 w-3/4">
       <button
         type="button"
         @click="teamStore.toggleMember(pokemon!.id)"
-        class="min-w-[260px] max-w-lg w-[min(92vw,520px)] px-6 py-3 rounded-full shadow-lg text-sm font-semibold flex items-center justify-center gap-3
-               bg-gray-900 text-white hover:bg-gray-800 active:scale-95 focus:outline-none focus:ring-2 focus:ring-gray-700"
+        class="w-full px-6 py-3 rounded-full shadow-lg flex items-center justify-center
+               bg-gray-900 hover:bg-gray-800 active:scale-95"
       >
-        <span v-if="!inTeam">Add to team</span>
-        <span v-else>Remove from team</span>
+        <span v-if="!inTeam" class="text-lg font-bold text-white">Add to team</span>
+        <span v-else class="text-lg font-bold text-white">Remove from team</span>
       </button>
     </div>
 
