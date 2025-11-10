@@ -5,7 +5,7 @@ import PokemonCard from './PokemonCard.vue';
 
 const { pokemons, isLoading, error } = usePokemonList();
 
-const props = defineProps<{ filter?: string, onlyIds?: number[] }>();
+const props = defineProps<{ search?: string, onlyIds?: number[] }>();
 
 const formattedId = (id: number) => {
   return `${String(id).padStart(3, "0")}`;
@@ -19,7 +19,7 @@ const filteredPokemons = computed(() => {
     list = list.filter(p => props.onlyIds!.includes(p.id))
   }
 
-  const rawSearch = (props.filter ?? '').trim().toLowerCase()
+  const rawSearch = (props.search ?? '').trim().toLowerCase()
   if (props.onlyIds && props.onlyIds.length > 0) {
     return list.filter(p => p.id && props.onlyIds!.includes(p.id))
   }
