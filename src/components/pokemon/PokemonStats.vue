@@ -15,7 +15,6 @@ const statColorClass = (value: number) => {
 <template>
   <div class="max-w-full">
     <div class="bg-white rounded-xl shadow p-4 text-left max-w-full">
-      <h3 class="text-sm text-gray-500 font-semibold mb-3">Statistics</h3>
 
       <div class="space-y-3">
         <div
