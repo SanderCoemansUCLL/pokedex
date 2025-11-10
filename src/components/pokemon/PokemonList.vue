@@ -12,7 +12,13 @@ const formattedId = (id: number) => {
 };
 
 const filteredPokemons = computed(() => {
-  const list = pokemons.value ?? []
+  let list = pokemons.value ?? [];
+
+  if (props.onlyIds) {
+    if (props.onlyIds.length === 0) return []
+    list = list.filter(p => props.onlyIds!.includes(p.id))
+  }
+
   const rawSearch = (props.filter ?? '').trim().toLowerCase()
   if (props.onlyIds && props.onlyIds.length > 0) {
     return list.filter(p => p.id && props.onlyIds!.includes(p.id))
@@ -40,7 +46,7 @@ const filteredPokemons = computed(() => {
       <span class="text-gray-500">Loading…</span>
     </div>
 
-    <div v-else-if="filteredPokemons.length === 0" class="flex justify-center items-center py-12">
+    <div v-else-if="filteredPokemons.length === 0 && !props.onlyIds" class="flex justify-center items-center py-12">
       <span class="text-gray-500">No Pokemon found.</span>
     </div>
 
