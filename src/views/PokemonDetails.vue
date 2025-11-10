@@ -21,6 +21,10 @@ const inTeam = computed(() => {
   return teamStore.isMember(pokemonId);
 });
 
+const teamIsFull = computed(() => {
+  return teamStore.getMembers().length >= 6;
+});
+
 const nameRef = toRef(route.params, 'pokemonName') as Ref<string>
 
 const { pokemon, isLoading, error } = usePokemonDetails(nameRef)
@@ -93,8 +97,10 @@ const isFavourite = computed(() => {
         @click="teamStore.toggleMember(pokemon!.id)"
         class="w-full px-6 py-3 rounded-full shadow-lg flex items-center justify-center
                bg-gray-900 hover:bg-gray-800 active:scale-95"
+        :disabled="teamIsFull && !inTeam"
       >
-        <span v-if="!inTeam" class="text-lg font-bold text-white">Add to team</span>
+        <span v-if="!inTeam && !teamIsFull" class="text-lg font-bold text-white">Add to team</span>
+        <span v-else-if="teamIsFull && !inTeam" class="text-lg font-bold text-white">Team is full</span>
         <span v-else class="text-lg font-bold text-white">Remove from team</span>
       </button>
     </div>
