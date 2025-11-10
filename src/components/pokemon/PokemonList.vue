@@ -27,7 +27,7 @@ const filteredPokemons = computed(() => {
 
 </script>
 <template>
-  <div class="max-w-3xl mx-auto px-4 py-6">
+  <div class="max-w-3xl mx-auto py-6">
 
     <div v-if="error" class="text-sm text-red-600 text-center py-6" aria-live="polite">
       {{ error }}
