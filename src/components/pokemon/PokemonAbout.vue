@@ -32,7 +32,7 @@ const genders = computed(() => {
   <div class="max-w-full">
     <div class="bg-white rounded-xl shadow p-4 text-left max-w-full">
       <div class="grid grid-cols-2 gap-3 text-sm text-gray-700">
-        <div class="text-xs text-gray-400">Type</div>
+        <div class="text-base text-gray-400">Type</div>
         <div class="flex gap-2">
           <template v-for="t in props.pokemon.types" :key="t.type.name">
             <span :class="['px-2 py-1 rounded-full text-[11px] font-semibold text-white capitalize', colours[t.type.name as keyof typeof colours]]">
@@ -41,19 +41,19 @@ const genders = computed(() => {
           </template>
         </div>
 
-        <div class="text-xs text-gray-400">Number</div>
+        <div class="text-base text-gray-400">Number</div>
         <div class="font-medium">#{{ number }}</div>
 
-        <div class="text-xs text-gray-400">Height</div>
+        <div class="text-base text-gray-400">Height</div>
         <div class="font-medium">{{ height(props.pokemon.height) }}</div>
 
-        <div class="text-xs text-gray-400">Weight</div>
+        <div class="text-base text-gray-400">Weight</div>
         <div class="font-medium">{{ weight(props.pokemon.weight) }}</div>
 
-        <div class="text-xs text-gray-400">Gender</div>
+        <div class="text-base text-gray-400">Gender</div>
         <div class="font-medium">{{ genders }}</div>
 
-        <div class="text-xs text-gray-400">Abilities</div>
+        <div class="text-base text-gray-400">Abilities</div>
         <div class="font-medium">{{ abilities }}</div>
       </div>
     </div>

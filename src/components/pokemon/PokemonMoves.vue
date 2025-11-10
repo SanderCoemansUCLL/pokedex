@@ -49,7 +49,7 @@ gen1LevelUpMoves.sort((a, b) => a.level - b.level);
               Level {{ move.level }}
             </span>
 
-            <span class="text-sm font-semibold text-gray-800 ">
+            <span class="text-sm font-semibold text-gray-800 min-w-0 wrap-break-word whitespace-normal">
               {{ formattedMoveName(move.name) }}
             </span>
           </div>

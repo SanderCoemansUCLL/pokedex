@@ -22,11 +22,11 @@ const statColorClass = (value: number) => {
           :key="stat.stat.name"
           class="flex items-center gap-3"
         >
-          <div class="w-10 text-xs text-gray-600 capitalize">
+          <div class="w-10 text-base text-gray-400 capitalize">
             {{ capitalize(stat.stat.name) }}
           </div>
 
-          <div class="w-10 text-xs text-gray-600 text-right font-medium">
+          <div class="w-10 text-base text-gray-600 text-right font-medium">
             {{ stat.base_stat }}
           </div>
 
