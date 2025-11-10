@@ -25,7 +25,7 @@ const teamIsFull = computed(() => {
   return teamStore.getMembers().length >= 6;
 });
 
-const nameRef = toRef(route.params, 'pokemonName') as Ref<string>
+const nameRef = toRef(route.params, 'pokemonName') as Ref<string>;
 
 const { pokemon, isLoading, error } = usePokemonDetails(nameRef)
 
