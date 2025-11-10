@@ -15,6 +15,6 @@ const search = ref('');
       <CollectionCard for="team" />
       <CollectionCard for="favourites" />
     </div>
-    <PokemonList :filter="search" />
+    <PokemonList :search="search" />
   </div>
 </template>
