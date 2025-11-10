@@ -6,6 +6,7 @@ import PokemonLightBox from '../components/pokemon/PokemonLightBox.vue'
 import colours from '../utils/pokemonTypeColors'
 import PokemonAbout from '../components/pokemon/PokemonAbout.vue'
 import PokemonStats from '../components/pokemon/PokemonStats.vue'
+import PokemonMoves from '../components/pokemon/PokemonMoves.vue'
 
 const route = useRoute()
 
@@ -43,18 +44,19 @@ const capitalizedName = computed(() => {
     </div>
     <PokemonLightBox :sprites="pokemon!.sprites" />
 
-    <div class="pl-8 pr-8">
+    <div class="pl-8 pr-8 pb-6">
       <h2 class="text-left">About</h2>
       <PokemonAbout :pokemon="pokemon!" />
     </div>
 
-    <div class="pl-8 pr-8">
+    <div class="pl-8 pr-8 pb-6">
       <h2 class="text-left">Stats</h2>
       <PokemonStats :stats="pokemon!.stats" />
     </div>
 
-    <div class="pl-8 pr-8">
+    <div class="pl-8 pr-8 pb-6">
       <h2 class="text-left">Moveset</h2>
+      <PokemonMoves :moves="pokemon!.moves" />
     </div>
 
   </div>
