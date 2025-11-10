@@ -35,7 +35,7 @@ const genders = computed(() => {
         <div class="text-base text-gray-400">Type</div>
         <div class="flex gap-2">
           <template v-for="t in props.pokemon.types" :key="t.type.name">
-            <span :class="['px-2 py-1 rounded-full text-[11px] font-semibold text-white capitalize', colours[t.type.name as keyof typeof colours]]">
+            <span :class="['px-2 py-1 rounded-full text-[11px] font-semibold text-white capitalize']" :style="{ backgroundColor: colours[t.type.name as keyof typeof colours][0] }">
               {{ t.type.name }}
             </span>
           </template>

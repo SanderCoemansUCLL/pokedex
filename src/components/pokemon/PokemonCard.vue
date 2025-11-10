@@ -39,10 +39,9 @@ const formattedId = computed(() => {
           v-for="typeInfo in pokemon.types"
           :key="typeInfo.type.name"
           :class="[
-            'px-1.5 py-0.5 rounded-full text-[11px] font-semibold text-white capitalize',
-            colours[typeInfo.type.name as keyof typeof colours] || 'bg-gray-400'
+            'px-1.5 py-0.5 rounded-full text-[11px] font-semibold text-white capitalize'
           ]"
-          style="max-width: 100%;"
+          :style="{ maxWidth: '100%', backgroundColor: colours[typeInfo.type.name as keyof typeof colours][0] }"
         >
           {{ typeInfo.type.name }}
         </span>
