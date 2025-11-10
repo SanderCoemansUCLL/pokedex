@@ -30,7 +30,7 @@ const imageLinks = [
     <img
       :src="props.sprites.front_default"
       alt="pokemon"
-      class="w-48 h-48 object-contain cursor-pointer"
+      class="w-48 h-48 object-cover transform scale-200 overflow-visible cursor-pointer"
       @click="openLightbox"
     />
 
