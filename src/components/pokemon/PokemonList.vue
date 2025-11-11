@@ -5,7 +5,7 @@ import PokemonCard from './PokemonCard.vue';
 
 const { pokemons, isLoading, error } = usePokemonList();
 
-const props = defineProps<{ search?: string, onlyIds?: number[], sort?: 'name-asc' | 'name-desc' | 'id-asc' | 'id-desc' }>();
+const props = defineProps<{ search?: string, onlyNames?: string[], sort?: 'name-asc' | 'name-desc' | 'id-asc' | 'id-desc' }>();
 
 const formattedId = (id: number) => {
   return `${String(id).padStart(3, "0")}`;
@@ -30,14 +30,14 @@ const sortedPokemons = computed(() => {
 const filteredPokemons = computed(() => {
   let list = sortedPokemons.value ?? [];
 
-  if (props.onlyIds) {
-    if (props.onlyIds.length === 0) return []
-    list = list.filter(p => props.onlyIds!.includes(p.id))
+  if (props.onlyNames) {
+    if (props.onlyNames.length === 0) return []
+    list = list.filter(p => props.onlyNames!.includes(p.name))
   }
 
   const rawSearch = (props.search ?? '').trim().toLowerCase()
-  if (props.onlyIds && props.onlyIds.length > 0) {
-    return list.filter(p => p.id && props.onlyIds!.includes(p.id))
+  if (props.onlyNames && props.onlyNames.length > 0) {
+    return list.filter(p => p.name && props.onlyNames!.includes(p.name))
   }
   if (!rawSearch) return list
 
@@ -58,11 +58,11 @@ const filteredPokemons = computed(() => {
       {{ error }}
     </div>
 
-    <div v-else-if="isLoading && !(props.onlyIds?.length === 0)" class="flex justify-center items-center py-12">
+    <div v-else-if="isLoading && !(props.onlyNames?.length === 0)" class="flex justify-center items-center py-12">
       <span class="text-gray-500">Loading…</span>
     </div>
 
-    <div v-else-if="filteredPokemons.length === 0 && !props.onlyIds" class="flex justify-center items-center py-12">
+    <div v-else-if="filteredPokemons.length === 0 && !props.onlyNames" class="flex justify-center items-center py-12">
       <span class="text-gray-500">No Pokemon found.</span>
     </div>
 

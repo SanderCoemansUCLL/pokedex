@@ -2,24 +2,24 @@ import { defineStore } from 'pinia'
 
 export const useTeamStore = defineStore('team', {
   state: () => ({
-    members: [] as number[],
+    members: [] as string[],
     }),
     persist: {
         key: 'team-store',
         storage: localStorage,
     },
     actions: {
-        toggleMember(pokemonId: number) {
-            if (this.members.includes(pokemonId)) {
-                this.members = this.members.filter(id => id !== pokemonId);
+        toggleMember(pokemonName: string) {
+            if (this.members.includes(pokemonName)) {
+                this.members = this.members.filter(name => name !== pokemonName);
             } else {
                 if (this.members.length < 6) {
-                    this.members.push(pokemonId);
+                    this.members.push(pokemonName);
                 }
             }
         },
-        isMember(pokemonId: number) {
-            return this.members.includes(pokemonId);
+        isMember(pokemonName: string) {
+            return this.members.includes(pokemonName);
         },
         getMembers() {
             return this.members;

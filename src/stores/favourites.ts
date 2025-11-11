@@ -2,22 +2,22 @@ import { defineStore } from 'pinia'
 
 export const useFavouritesStore = defineStore('favourites', {
   state: () => ({
-    favourites: [] as number[],
+    favourites: [] as string[],
     }),
     persist: {
         key: 'favourites-store',
         storage: localStorage,
     },
     actions: {
-        toggleFavourite(pokemonId: number) {
-            if (this.favourites.includes(pokemonId)) {
-                this.favourites = this.favourites.filter(id => id !== pokemonId);
+        toggleFavourite(pokemonName: string) {
+            if (this.favourites.includes(pokemonName)) {
+                this.favourites = this.favourites.filter(name => name !== pokemonName);
             } else {
-                this.favourites.push(pokemonId);
+                this.favourites.push(pokemonName);
             }
         },
-        isFavourite(pokemonId: number) {
-            return this.favourites.includes(pokemonId);
+        isFavourite(pokemonName: string) {
+            return this.favourites.includes(pokemonName);
         },
         getFavourites() {
             return this.favourites;

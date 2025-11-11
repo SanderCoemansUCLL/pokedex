@@ -17,8 +17,8 @@ const route = useRoute();
 const teamStore = useTeamStore();
 
 const inTeam = computed(() => {
-  const pokemonId = pokemon.value?.id ?? 0;
-  return teamStore.isMember(pokemonId);
+  const pokemonName = pokemon.value?.name ?? '';
+  return teamStore.isMember(pokemonName);
 });
 
 const teamIsFull = computed(() => {
@@ -45,11 +45,11 @@ const capitalizedName = computed(() => {
 const favouritesStore = useFavouritesStore();
 
 const toggleFavourite = () => {
-  favouritesStore.toggleFavourite(pokemon.value?.id ?? 0);
+  favouritesStore.toggleFavourite(pokemon.value?.name ?? '');
 }
 
 const isFavourite = computed(() => {
-  return favouritesStore.isFavourite(pokemon.value?.id ?? 0);
+  return favouritesStore.isFavourite(pokemon.value?.name ?? '');
 });
 
 </script>
@@ -94,7 +94,7 @@ const isFavourite = computed(() => {
     <div class="fixed left-1/2 transform -translate-x-1/2 bottom-6 z-50 w-3/4">
       <button
         type="button"
-        @click="teamStore.toggleMember(pokemon!.id)"
+        @click="teamStore.toggleMember(pokemon!.name)"
         class="w-full px-6 py-3 rounded-full shadow-lg flex items-center justify-center
                bg-gray-900 hover:bg-gray-800 active:scale-95"
         :disabled="teamIsFull && !inTeam"
