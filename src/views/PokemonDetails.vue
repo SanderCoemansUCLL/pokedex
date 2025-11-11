@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
-import { computed, toRef, type Ref } from 'vue'
+import { computed } from 'vue'
 import { usePokemonDetails } from '../composables/usePokemonDetails'
 import PokemonLightBox from '../components/pokemon/PokemonLightBox.vue'
 import colours from '../utils/pokemonTypeColors'
@@ -26,9 +26,9 @@ const teamIsFull = computed(() => {
   return teamStore.getMembers().length >= 6;
 });
 
-const nameRef = toRef(route.params, 'pokemonName') as Ref<string>;
+const name = computed(() => route.params.pokemonName as string);
 
-const { pokemon, isLoading, error } = usePokemonDetails(nameRef)
+const { pokemon, isLoading, error } = usePokemonDetails(name)
 
 const primaryType = computed(() => pokemon.value?.types?.[0]?.type?.name ?? 'normal')
 
@@ -56,7 +56,7 @@ const isFavourite = computed(() => {
 </script>
 
 <template>
-  <div class="min-h-screen min-w-screen p-4 pb-20" :style="bgStyle">
+  <div class="min-h-screen min-w-screen p-4 pb-20" :style="bgStyle" :key="name">
     <BackButton />
     <div v-if="error">
       <p class="text-red-500">Error: {{ error }}</p>
@@ -85,11 +85,6 @@ const isFavourite = computed(() => {
     <div class="pb-6">
       <h2 class="text-left font-bold text-lg">Stats</h2>
       <PokemonStats :stats="pokemon!.stats" />
-    </div>
-
-    <div class="pb-6">
-      <h2 class="text-left font-bold text-lg">Moveset</h2>
-      <PokemonMoves :moves="pokemon!.moves" />
     </div>
 
     <div class="pb-6">

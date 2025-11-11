@@ -1,4 +1,3 @@
-import type { Ref } from 'vue';
 import type { Pokemon, PokemonDetails } from '../types';
 
 export async function getAllPokemons(): Promise<Pokemon[]> {
@@ -10,8 +9,8 @@ export async function getAllPokemons(): Promise<Pokemon[]> {
     return data;
 }
 
-export async function getPokemonByName(name: Ref<string>): Promise<PokemonDetails> {
-    const response = await fetch (`https://pokeapi.co/api/v2/pokemon/${name.value}`);
+export async function getPokemonByName(name: string): Promise<PokemonDetails> {
+    const response = await fetch (`https://pokeapi.co/api/v2/pokemon/${name}`);
     if (!response.ok) {
         throw new Error('Failed to fetch pokemon details');
     }
