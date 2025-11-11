@@ -39,7 +39,7 @@ const existingImageLinks = imageLinks.filter(
 <template>
   <div class="flex justify-center">
     <Carousel v-bind="carouselConfig" class="w-full max-w-md">
-      <Slide v-for="src in existingImageLinks">
+      <Slide v-for="(src, index) in existingImageLinks" :key="index">
         <div class="flex items-center justify-center p-4">
           <img
             :src="src"

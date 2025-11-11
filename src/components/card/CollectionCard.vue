@@ -20,6 +20,7 @@ const count = computed(() => {
   } else if (props.for === "team") {
     return teamStore.getMembers().length;
   }
+  return 0;
 });
 const backgroundImage = computed(() => {
   return props.for === "favourites"
