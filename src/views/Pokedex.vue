@@ -28,7 +28,7 @@ const route = useRoute();
       :class="[
         'p-4 sm:p-6 lg:p-8',
         route.params.pokemonName 
-          ? 'hidden lg:block lg:w-1/2 lg:border-r lg:border-gray-200 lg:overflow-y-auto lg:h-screen' 
+          ? 'hidden lg:block lg:w-1/3 lg:border-r lg:border-gray-200 lg:overflow-y-auto lg:h-screen' 
           : 'w-full'
       ]"
     >
@@ -101,7 +101,7 @@ const route = useRoute();
     </div>
     <div 
       v-if="route.params.pokemonName"
-      class="w-full lg:w-1/2 overflow-y-auto lg:h-screen"
+      class="w-full lg:w-2/3 overflow-y-auto lg:h-screen"
     >
       <router-view />
     </div>

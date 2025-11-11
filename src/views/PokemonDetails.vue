@@ -107,6 +107,7 @@ const closeDetails = () => {
         @click="toggleFavourite"
       />
     </div>
+    <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:mt-6">
     <PokemonLightBox v-if="pokemon" :sprites="pokemon.sprites" />
 
     <div v-if="pokemon" class="pb-4 sm:pb-6">
@@ -136,10 +137,11 @@ const closeDetails = () => {
       </h2>
       <PokemonEvolutions :pokemonId="pokemon.id" />
     </div>
+    </div>
 
     <div
       v-if="pokemon"
-      class="fixed bottom-4 sm:bottom-6 left-0 right-0 z-50 px-4 lg:left-1/2 lg:px-4"
+      class="fixed bottom-4 sm:bottom-6 left-0 right-0 z-50 px-4 lg:left-1/3 lg:px-4"
     >
       <button
         type="button"
