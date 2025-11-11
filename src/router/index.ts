@@ -5,8 +5,13 @@ import FavouritePokemons from "../views/FavouritePokemons.vue";
 import TeamPokemons from "../views/TeamPokemons.vue";
 
 const routes = [
-  { path: "/", name: "Pokedex", component: Pokedex },
-  { path: "/:pokemonName", name: "PokemonDetails", component: PokemonDetails },
+  { path: "/", name: "Pokedex", component: Pokedex, children: [
+      { 
+        path: ":pokemonName", 
+        name: "PokemonDetails", 
+        component: PokemonDetails 
+      },
+    ] },
   { path: "/favourites", name: "Favourites", component: FavouritePokemons },
   { path: "/team", name: "Team", component: TeamPokemons },
 ];
