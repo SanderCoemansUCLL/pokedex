@@ -7,6 +7,7 @@ import colours from '../utils/pokemonTypeColors'
 import PokemonAbout from '../components/pokemon/PokemonAbout.vue'
 import PokemonStats from '../components/pokemon/PokemonStats.vue'
 import PokemonMoves from '../components/pokemon/PokemonMoves.vue'
+import PokemonEvolutions from '../components/pokemon/PokemonEvolutions.vue'
 import { Heart } from 'lucide-vue-next';
 import { useFavouritesStore } from '../stores/favourites';
 import BackButton from '../components/ui/BackButton.vue'
@@ -89,6 +90,16 @@ const isFavourite = computed(() => {
     <div class="pb-6">
       <h2 class="text-left font-bold text-lg">Moveset</h2>
       <PokemonMoves :moves="pokemon!.moves" />
+    </div>
+
+    <div class="pb-6">
+      <h2 class="text-left font-bold text-lg">Moveset</h2>
+      <PokemonMoves :moves="pokemon!.moves" />
+    </div>
+
+    <div class="pb-6">
+      <h2 class="text-left font-bold text-lg">Evolution</h2>
+      <PokemonEvolutions :pokemonId="pokemon!.id" />
     </div>
 
     <div class="fixed left-1/2 transform -translate-x-1/2 bottom-6 z-50 w-3/4">
