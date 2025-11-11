@@ -1,4 +1,4 @@
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import { getEvolutionChain } from "../services/pokemonService";
 
 export function useEvolutionChain(id: number) {
@@ -26,7 +26,9 @@ export function useEvolutionChain(id: number) {
     }
   };
 
-  fetchEvolutionChain(id);
+  onMounted(() => {
+    fetchEvolutionChain(id);
+  });
 
   return {
     names,

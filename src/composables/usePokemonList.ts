@@ -1,4 +1,4 @@
-import { ref } from "vue";
+import { onMounted, ref } from "vue";
 import type { Pokemon } from "../types";
 import { getAllPokemons } from "../services/pokemonService";
 import { usePokemonStore } from "../stores/pokemons";
@@ -29,8 +29,10 @@ export function usePokemonList() {
       }
     }
   };
-
-  fetchPokemons();
+  
+  onMounted(() => {
+    fetchPokemons();
+  });
 
   return {
     pokemons,
