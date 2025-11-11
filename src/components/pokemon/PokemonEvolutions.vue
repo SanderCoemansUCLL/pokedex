@@ -10,5 +10,5 @@ const { names, isLoading, error } = useEvolutionChain(props.pokemonId);
 </script>
 
 <template>
-    <PokemonList :onlyNames="names"/>
+    <PokemonList :onlyNames="names" :selectedId="props.pokemonId" />
 </template>

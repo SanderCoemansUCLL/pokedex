@@ -5,7 +5,10 @@ import PokemonCard from './PokemonCard.vue';
 
 const { pokemons, isLoading, error } = usePokemonList();
 
-const props = defineProps<{ search?: string, onlyNames?: string[], sort?: 'name-asc' | 'name-desc' | 'id-asc' | 'id-desc' }>();
+const props = defineProps<{ search?: string, 
+                            onlyNames?: string[], 
+                            sort?: 'name-asc' | 'name-desc' | 'id-asc' | 'id-desc',
+                            selectedId?: number }>();
 
 const formattedId = (id: number) => {
   return `${String(id).padStart(3, "0")}`;
@@ -75,7 +78,8 @@ const filteredPokemons = computed(() => {
       <router-link
           :to="{ name: 'PokemonDetails', params: { pokemonName: pokemon.name } }"
         >
-        <PokemonCard :pokemon="pokemon" />
+        <PokemonCard v-if="props.selectedId" :pokemon="pokemon" :selectedId="props.selectedId" />
+        <PokemonCard v-else :pokemon="pokemon" />
       </router-link>
       </li>
     </ul>

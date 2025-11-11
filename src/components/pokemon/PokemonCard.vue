@@ -1,12 +1,15 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import colours from "../../utils/pokemonTypeColors";
+import type { Pokemon } from "../../types";
 
-const props = defineProps({
-  pokemon: {
-    type: Object,
-    required: true,
-  },
+const props = defineProps<{pokemon: Pokemon, selectedId?: number}>();
+
+const isSelected = computed(() => {
+  if (props.selectedId) {
+    return props.pokemon.id === props.selectedId;
+  }
+  return true;
 });
 
 const formattedId = computed(() => {
@@ -16,7 +19,8 @@ const formattedId = computed(() => {
 
 <template>
   <div
-    class="relative flex items-center gap-2 p-2 pr-12 bg-white rounded-xl shadow-sm cursor-pointer overflow-hidden transition-all duration-200 hover:shadow-md hover:-translate-y-0.5"
+    :class="['relative flex items-center gap-2 p-2 pr-12 rounded-xl shadow-sm cursor-pointer overflow-hidden transition-all duration-200 hover:shadow-md hover:-translate-y-0.5']"
+    :style="{ backgroundColor: isSelected ? 'rgb(255 255 255)' : 'rgba(255, 255, 255, 0.5)' }"
   >
     <img
       :src="pokemon.sprites.front_default"
