@@ -139,12 +139,12 @@ const closeDetails = () => {
 
     <div
       v-if="pokemon"
-      class="fixed bottom-4 sm:bottom-6 left-4 right-4 lg:left-1/2 lg:right-4 z-50 max-w-md lg:max-w-none mx-auto lg:mx-0 flex items-center justify-center"
+      class="fixed bottom-4 sm:bottom-6 left-0 right-0 z-50 px-4 lg:left-1/2 lg:px-4"
     >
       <button
         type="button"
         @click="teamStore.toggleMember(pokemon.name)"
-        class="max-w-2xl px-4 sm:px-6 py-2.5 sm:py-3 rounded-full shadow-lg flex items-center justify-center bg-gray-900 hover:bg-gray-800 active:scale-95 transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
+        class="w-full max-w-md mx-auto px-4 sm:px-6 py-2.5 sm:py-3 rounded-full shadow-lg flex items-center justify-center bg-gray-900 hover:bg-gray-800 active:scale-95 transition-transform disabled:opacity-50 disabled:cursor-not-allowed"
         :disabled="teamIsFull && !inTeam"
       >
         <span
