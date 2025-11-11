@@ -6,7 +6,7 @@ const props = defineProps<{
   pokemonId: number;
 }>();
 
-const { names, isLoading, error } = useEvolutionChain(props.pokemonId);
+const { names } = useEvolutionChain(props.pokemonId);
 </script>
 
 <template>
