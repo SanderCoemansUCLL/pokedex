@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import VueEasyLightbox from 'vue-easy-lightbox';
 const props = defineProps(['sprites']);
 import 'vue3-carousel/carousel.css'
-import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
+import { Carousel, Slide, Navigation } from 'vue3-carousel'
 
 const carouselConfig = {
   itemsToShow: 1,
