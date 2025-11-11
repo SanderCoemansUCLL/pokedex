@@ -2,6 +2,13 @@
 import { ref } from 'vue';
 import VueEasyLightbox from 'vue-easy-lightbox';
 const props = defineProps(['sprites']);
+import 'vue3-carousel/carousel.css'
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel'
+
+const carouselConfig = {
+  itemsToShow: 1,
+  wrapAround: true
+}
 
 const visible = ref(false);
 
@@ -23,16 +30,27 @@ const imageLinks = [
     props.sprites.front_shiny_female,
     props.sprites.back_shiny_female
 ]
+
+const existingImageLinks = imageLinks.filter(link => link !== null && link !== undefined);
 </script>
 
 <template>
     <div class="flex justify-center">
-    <img
-      :src="props.sprites.front_default"
-      alt="pokemon"
-      class="w-48 h-48 object-cover transform overflow-visible cursor-pointer"
-      @click="openLightbox"
-    />
+    <Carousel v-bind="carouselConfig" class="w-full max-w-md">
+      <Slide v-for="(src) in existingImageLinks">
+        <div class="flex items-center justify-center p-4">
+          <img
+            :src="src"
+            alt="sprite"
+            class="w-full h-48 object-contain cursor-pointer"
+            @click="openLightbox"
+          />
+        </div>
+      </Slide>
+      <template #addons>
+          <Navigation />
+        </template>
+    </Carousel>
 
     <VueEasyLightbox
       :visible="visible"
