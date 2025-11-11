@@ -1,14 +1,14 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import VueEasyLightbox from 'vue-easy-lightbox';
-const props = defineProps(['sprites']);
-import 'vue3-carousel/carousel.css'
-import { Carousel, Slide, Navigation } from 'vue3-carousel'
+import { ref } from "vue";
+import VueEasyLightbox from "vue-easy-lightbox";
+const props = defineProps(["sprites"]);
+import "vue3-carousel/carousel.css";
+import { Carousel, Slide, Navigation } from "vue3-carousel";
 
 const carouselConfig = {
   itemsToShow: 1,
-  wrapAround: true
-}
+  wrapAround: true,
+};
 
 const visible = ref(false);
 
@@ -21,23 +21,25 @@ const onHide = () => {
 };
 
 const imageLinks = [
-    props.sprites.front_default,
-    props.sprites.back_default,
-    props.sprites.front_shiny,
-    props.sprites.back_shiny,
-    props.sprites.front_female,
-    props.sprites.back_female,
-    props.sprites.front_shiny_female,
-    props.sprites.back_shiny_female
-]
+  props.sprites.front_default,
+  props.sprites.back_default,
+  props.sprites.front_shiny,
+  props.sprites.back_shiny,
+  props.sprites.front_female,
+  props.sprites.back_female,
+  props.sprites.front_shiny_female,
+  props.sprites.back_shiny_female,
+];
 
-const existingImageLinks = imageLinks.filter(link => link !== null && link !== undefined);
+const existingImageLinks = imageLinks.filter(
+  (link) => link !== null && link !== undefined
+);
 </script>
 
 <template>
-    <div class="flex justify-center">
+  <div class="flex justify-center">
     <Carousel v-bind="carouselConfig" class="w-full max-w-md">
-      <Slide v-for="(src) in existingImageLinks">
+      <Slide v-for="src in existingImageLinks">
         <div class="flex items-center justify-center p-4">
           <img
             :src="src"
@@ -48,8 +50,8 @@ const existingImageLinks = imageLinks.filter(link => link !== null && link !== u
         </div>
       </Slide>
       <template #addons>
-          <Navigation />
-        </template>
+        <Navigation />
+      </template>
     </Carousel>
 
     <VueEasyLightbox
