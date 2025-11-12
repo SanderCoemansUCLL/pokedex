@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.17",
+    "chart.js": "^4.5.1",
     "lucide-vue-next": "^0.553.0",
     "pinia": "^3.0.4",
     "pinia-plugin-persistedstate": "^4.7.1",
